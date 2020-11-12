@@ -4,13 +4,17 @@
     padding: 0 10px;
 }
 
+joke-list {
+    width: calc(50% - 20px);
+}
+
 .chuck-jokes {
     &__container {
         display: flex;
         justify-content: space-between;
     }
 
-    &__list {
+    joke-list {
         width: calc(50% - 20px);
     }
 

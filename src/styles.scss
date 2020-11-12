@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+button {
+    margin: 0;
+    position: relative;
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    transition: background .4s ease;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background: #ccc;
+    }
+}

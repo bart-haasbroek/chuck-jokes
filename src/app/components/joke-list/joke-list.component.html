@@ -1,0 +1,16 @@
+<h3>{{title}}</h3>
+<div 
+    *ngFor="let item of jokes"
+    class="jokes-list__item"
+>
+    <div
+        class="jokes-list__item-label"
+        [innerHTML]="item.joke"
+    ></div>
+    <button
+        class="jokes-list__item-button"
+        (click)="onItemClick(item)"
+    >
+        {{buttonLabel}}
+    </button>
+</div>

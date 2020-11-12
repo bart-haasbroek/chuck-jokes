@@ -7,15 +7,22 @@ import { StateModule } from '@store/store.module';
 import { ChuckJokesService } from '@services/chuck-jokes.service';
 import { HttpClientModule } from '@angular/common/http';
 
+//components
+import { JokeListComponent } from '@components/joke-list/joke-list.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    JokeListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     StateModule,
+  ],
+  exports: [
+    JokeListComponent
   ],
   providers: [ChuckJokesService],
   bootstrap: [AppComponent]

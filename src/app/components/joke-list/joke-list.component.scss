@@ -1,0 +1,23 @@
+.jokes-list {
+    &__item {
+        display: flex;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        align-items: flex-start;
+        border-bottom: 1px solid #ccc;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__item-label {
+        flex-grow: 1;
+    }
+
+    &__item-button {
+        width: 20%;
+        margin: 0 10px;
+        flex-shrink: 0;
+    }
+}
