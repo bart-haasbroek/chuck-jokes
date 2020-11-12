@@ -11,6 +11,7 @@ export class JokeListComponent {
     @Input() title: string;
     @Input() buttonLabel: string;
     @Input() jokes: ChuckJokeInterface[] = [];
+    @Input() showButton: boolean = true;
 
     @Output() onJokeClick: EventEmitter<ChuckJokeInterface> = new EventEmitter<ChuckJokeInterface>();
     

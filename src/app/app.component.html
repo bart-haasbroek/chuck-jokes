@@ -7,6 +7,7 @@
     <joke-list
         title="Chuck Norris Jokes:"
         buttonLabel="Add to favourites"
+        [showButton]="(amountOfFavouriteJokes$ | async) < 10"
         [jokes]="(chuckJokes$ | async)"
         (onJokeClick)="addToFavourite($event)"
     ></joke-list>

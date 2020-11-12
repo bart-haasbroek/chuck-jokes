@@ -8,6 +8,7 @@
         [innerHTML]="item.joke"
     ></div>
     <button
+        *ngIf="showButton"
         class="jokes-list__item-button"
         (click)="onItemClick(item)"
     >

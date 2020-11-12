@@ -14,6 +14,8 @@ import { ChuckJokeInterface } from '@interfaces/chuck-joke.interface';
 export class AppComponent implements OnInit {
   public chuckJokes$: Observable<ChuckJokeInterface[]>;
   public favouriteChuckJokes$: Observable<ChuckJokeInterface[]>;
+  public amountOfFavouriteJokes$: Observable<number>;
+
   constructor(private store: Store<chuckJokesState>) {
     this.store.dispatch(fromChuckJokes.getSavedFavouriteJokes());
   }
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.chuckJokes$ = this.store.select(fromChuckJokes.selectAllChuckJokes);
     this.favouriteChuckJokes$ = this.store.select(fromChuckJokes.selectFavouriteJokes);
+    this.amountOfFavouriteJokes$ = this.store.select(fromChuckJokes.selectAmountOfFavouriteJokes);
   }
 
   public getJokes(): void {
