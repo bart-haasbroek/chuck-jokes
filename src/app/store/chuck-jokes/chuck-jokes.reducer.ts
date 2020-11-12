@@ -6,12 +6,14 @@ import * as ChuckJokesActions from './chuck-jokes.actions';
 export interface chuckJokesState extends EntityState<ChuckJokeInterface> {
     loading: boolean;
     loaded: boolean;
+    favouriteJokes: ChuckJokeInterface[],
 }
 
 export const chuckJokesAdapter = createEntityAdapter<ChuckJokeInterface>();
 const chuckJokesState: chuckJokesState = chuckJokesAdapter.getInitialState({
     loading: false,
     loaded: false,
+    favouriteJokes: [],
 });
  
 const _chuckJokesReducer = createReducer(
@@ -36,6 +38,20 @@ const _chuckJokesReducer = createReducer(
             loading: false,
             loaded: false,
         };
+    }),
+    on(ChuckJokesActions.markJokeAsFavourite, (state, action) => {
+        return chuckJokesAdapter.removeOne(action.payload.id, {
+            ...state,
+            favouriteJokes: [...state.favouriteJokes, action.payload]
+        });
+    }),
+    on(ChuckJokesActions.removeJokeAsFavourite, (state, action) => {
+        return chuckJokesAdapter.addOne(action.payload, {
+            ...state,
+            loading: false,
+            loaded: true,
+            favouriteJokes: state.favouriteJokes.filter((joke) => joke.id !== action.payload.id)
+        });
     }),
 );
  

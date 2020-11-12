@@ -13,14 +13,24 @@ import { ChuckJokeInterface } from '@interfaces/chuck-joke.interface';
 })
 export class AppComponent implements OnInit {
   public chuckJokes$: Observable<ChuckJokeInterface[]>;
+  public favouriteChuckJokes$: Observable<ChuckJokeInterface[]>;
   constructor(private store: Store<chuckJokesState>) {
   }
 
   ngOnInit(): void {
     this.chuckJokes$ = this.store.select(fromChuckJokes.selectAllChuckJokes);
+    this.favouriteChuckJokes$ = this.store.select(fromChuckJokes.selectFavouriteJokes);
   }
 
   public getJokes(): void {
     this.store.dispatch(fromChuckJokes.getChuckJokes());
   }
+
+  public addToFavourite(item: ChuckJokeInterface): void {
+    this.store.dispatch(fromChuckJokes.markJokeAsFavourite(item));
+  }
+  
+  public removeFavourite(item: ChuckJokeInterface): void {
+    this.store.dispatch(fromChuckJokes.removeJokeAsFavourite(item));
+  } 
 }

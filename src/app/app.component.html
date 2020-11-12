@@ -9,12 +9,19 @@
         <div
           class="chuck-jokes__item"
           *ngFor="let item of (chuckJokes$ | async)"
+          (click)="addToFavourite(item)"
           [innerHTML]="item.joke"
         ></div>
     </div>
     
     <div class="chuck-jokes__list chuck-jokes__favourites">
         <h3>Your favourite Chuck Norris Jokes:</h3>
+        <div
+          class="chuck-jokes__item"
+          *ngFor="let item of (favouriteChuckJokes$ | async)"
+          (click)="removeFavourite(item)"
+          [innerHTML]="item.joke"
+        ></div>
     </div>
   </div>
 

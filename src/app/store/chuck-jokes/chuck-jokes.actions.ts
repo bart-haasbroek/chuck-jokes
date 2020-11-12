@@ -9,3 +9,13 @@ export const getChuckJokesSuccess = createAction(
 export const getChuckJokesFail = createAction(
     '[chuck jokes] get chuck jokes fail',
 );
+
+export const markJokeAsFavourite = createAction(
+    '[chuck jokes] mark a joke as favourite',
+    (payload: ChuckJokeInterface) => ({ payload })
+);
+
+export const removeJokeAsFavourite = createAction(
+    '[chuck jokes] remove a joke as favourite',
+    (payload: ChuckJokeInterface) => ({ payload })
+);

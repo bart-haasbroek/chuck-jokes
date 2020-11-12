@@ -1,4 +1,4 @@
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as ChuckJokesReducer from './chuck-jokes.reducer';
 import { chuckJokesState } from './chuck-jokes.reducer';
 
@@ -10,3 +10,8 @@ export const {
     selectAll: selectAllChuckJokes,
 } = ChuckJokesReducer.chuckJokesAdapter.getSelectors(getChuckJokesState);
 
+
+export const selectFavouriteJokes = createSelector(
+    getChuckJokesState,
+    (state: chuckJokesState) => state.favouriteJokes
+  );
