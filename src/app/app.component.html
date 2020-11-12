@@ -1,1 +1,26 @@
-<h1>chuck jokes</h1>
+
+
+<div class="container">
+  <h1>Chuck jokes</h1>
+
+  <div class="chuck-jokes__container">
+    <div class="chuck-jokes__list">
+        <h3>Chuck Norris Jokes:</h3>
+        <div
+          class="chuck-jokes__item"
+          *ngFor="let item of (chuckJokes$ | async)"
+          [innerHTML]="item.joke"
+        ></div>
+    </div>
+    
+    <div class="chuck-jokes__list chuck-jokes__favourites">
+        <h3>Your favourite Chuck Norris Jokes:</h3>
+    </div>
+  </div>
+
+  <button (click)="getJokes()">
+    Get new jokes
+  </button>
+
+</div>
+

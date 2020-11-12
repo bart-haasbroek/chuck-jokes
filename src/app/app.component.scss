@@ -1,0 +1,20 @@
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.chuck-jokes {
+    &__container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__list {
+        width: calc(50% - 20px);
+    }
+
+    &__item {
+        margin-bottom: 20px;
+    }
+}
