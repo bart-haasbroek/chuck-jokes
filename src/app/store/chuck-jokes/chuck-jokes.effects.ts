@@ -27,6 +27,16 @@ export class ChuckJokesEffects {
             )
         })
     );
+    
+    @Effect()
+    fetchNewChuckJokeAsFavourite$ = this.actions$.pipe(
+        ofType(ChuckJokesActions.fetchNewChuckJokeAsFavourite),
+        switchMap(() => {
+            return this.chuckJokesService.getJokes(1).pipe(
+                map(res => ChuckJokesActions.markJokeAsFavourite(res.value[0])),
+            )
+        })
+    );
 
     @Effect()
     getSavedFavoriteJokes$ = this.actions$.pipe(

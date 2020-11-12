@@ -39,10 +39,17 @@ const _chuckJokesReducer = createReducer(
             loaded: false,
         };
     }),
+    on(ChuckJokesActions.getChuckJokesFail, state => {
+        return {
+            ...state,
+            loading: false,
+            loaded: false,
+        };
+    }),
     on(ChuckJokesActions.markJokeAsFavourite, (state, action) => {
         return chuckJokesAdapter.removeOne(action.payload.id, {
             ...state,
-            favouriteJokes: [...state.favouriteJokes, action.payload]
+            favouriteJokes: [action.payload, ...state.favouriteJokes]
         });
     }),
     on(ChuckJokesActions.removeJokeAsFavourite, (state, action) => {

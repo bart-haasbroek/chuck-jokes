@@ -2,6 +2,7 @@ import { ChuckJokeInterface } from '@interfaces/chuck-joke.interface';
 import { createAction } from '@ngrx/store';
 
 export const getChuckJokes = createAction('[chuck jokes] get chuck jokes');
+
 export const getChuckJokesSuccess = createAction(
     '[chuck jokes] get chuck jokes success',
     (payload: ChuckJokeInterface[]) => ({ payload })
@@ -9,6 +10,8 @@ export const getChuckJokesSuccess = createAction(
 export const getChuckJokesFail = createAction(
     '[chuck jokes] get chuck jokes fail',
 );
+
+export const fetchNewChuckJokeAsFavourite = createAction('[chuck jokes] fetch new chuck joke as favourite');
 
 export const markJokeAsFavourite = createAction(
     '[chuck jokes] mark a joke as favourite',

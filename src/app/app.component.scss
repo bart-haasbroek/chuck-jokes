@@ -4,6 +4,14 @@
     padding: 0 10px;
 }
 
+nav button {
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
 joke-list {
     width: calc(50% - 20px);
 }
@@ -16,9 +24,5 @@ joke-list {
 
     joke-list {
         width: calc(50% - 20px);
-    }
-
-    &__item {
-        margin-bottom: 20px;
     }
 }

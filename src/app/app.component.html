@@ -3,6 +3,16 @@
 <div class="container">
   <h1>Chuck jokes</h1>
 
+  <nav>
+    <button (click)="getJokes()">
+      Get new jokes
+    </button>
+
+    <button (click)="toggleInterval()">
+      {{timerIsEnabled ? 'Stop' : 'Start' }} timer
+    </button>
+  </nav>
+
   <div class="chuck-jokes__container">
     <joke-list
         title="Chuck Norris Jokes:"
@@ -19,10 +29,5 @@
       (onJokeClick)="removeFavourite($event)"
     ></joke-list>
   </div>
-
-  <button (click)="getJokes()">
-    Get new jokes
-  </button>
-
 </div>
 

@@ -8,7 +8,7 @@ export class ChuckJokesService {
         private http: HttpClient,
       ) { }
 
-    public getJokes(): Observable<any> {
-        return this.http.get('http://api.icndb.com/jokes/random/10');
+    public getJokes(amount: number = 10): Observable<any> {
+        return this.http.get(`http://api.icndb.com/jokes/random/${amount}`);
     }
 }
