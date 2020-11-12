@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   public chuckJokes$: Observable<ChuckJokeInterface[]>;
   public favouriteChuckJokes$: Observable<ChuckJokeInterface[]>;
   constructor(private store: Store<chuckJokesState>) {
+    this.store.dispatch(fromChuckJokes.getSavedFavouriteJokes());
   }
 
   ngOnInit(): void {
@@ -32,5 +33,5 @@ export class AppComponent implements OnInit {
   
   public removeFavourite(item: ChuckJokeInterface): void {
     this.store.dispatch(fromChuckJokes.removeJokeAsFavourite(item));
-  } 
+  }
 }

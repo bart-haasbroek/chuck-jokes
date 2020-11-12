@@ -19,3 +19,11 @@ export const removeJokeAsFavourite = createAction(
     '[chuck jokes] remove a joke as favourite',
     (payload: ChuckJokeInterface) => ({ payload })
 );
+
+export const getSavedFavouriteJokes = createAction(
+    '[chuck jokes] get saved a favourite jokes',
+);
+export const getSavedFavouriteJokesSuccess = createAction(
+    '[chuck jokes] get saved a favourite jokes success',
+    (payload: ChuckJokeInterface[]) => ({ payload })
+);

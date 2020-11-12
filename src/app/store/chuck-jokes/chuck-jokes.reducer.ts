@@ -53,6 +53,12 @@ const _chuckJokesReducer = createReducer(
             favouriteJokes: state.favouriteJokes.filter((joke) => joke.id !== action.payload.id)
         });
     }),
+    on(ChuckJokesActions.getSavedFavouriteJokesSuccess, (state, action) => {
+        return {
+            ...state,
+            favouriteJokes: action.payload
+        }
+    }),
 );
  
 export function chuckJokesReducer(state, action) {
