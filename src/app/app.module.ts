@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StateModule } from '@store/store.module';
 import { ChuckJokesService } from '@services/chuck-jokes.service';
@@ -17,7 +16,6 @@ import { JokeListComponent } from '@components/joke-list/joke-list.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     StateModule,
   ],
