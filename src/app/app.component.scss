@@ -4,25 +4,14 @@
     padding: 0 10px;
 }
 
-nav button {
+button {
     margin-right: 10px;
-
-    &:last-child {
-        margin-right: 0;
-    }
-}
-
-joke-list {
-    width: calc(50% - 20px);
 }
 
 .chuck-jokes {
     &__container {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    joke-list {
-        width: calc(50% - 20px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
     }
 }

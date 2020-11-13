@@ -14,9 +14,8 @@ export class JokeListComponent {
     @Input() showButton: boolean = true;
 
     @Output() onJokeClick: EventEmitter<ChuckJokeInterface> = new EventEmitter<ChuckJokeInterface>();
-    
+
     public onItemClick(joke: ChuckJokeInterface): void {
         this.onJokeClick.emit(joke);
     }
 }
-

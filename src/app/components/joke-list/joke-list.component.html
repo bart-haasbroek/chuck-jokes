@@ -1,17 +1,19 @@
-<h3>{{title}}</h3>
-<div 
-    *ngFor="let item of jokes"
-    class="jokes-list__item"
->
-    <div
-        class="jokes-list__item-label"
-        [innerHTML]="item.joke"
-    ></div>
-    <button
-        *ngIf="showButton"
-        class="jokes-list__item-button"
-        (click)="onItemClick(item)"
+<h2>{{title}}</h2>
+<ul class="jokes-list">
+    <li
+        *ngFor="let item of jokes"
+        class="jokes-list__item"
     >
-        {{buttonLabel}}
-    </button>
-</div>
+        <div
+            class="jokes-list__item-label"
+            [innerHTML]="item.joke"
+        ></div>
+        <button
+            *ngIf="showButton"
+            class="jokes-list__item-button"
+            (click)="onItemClick(item)"
+        >
+            {{buttonLabel}}
+        </button>
+    </li>
+</ul>

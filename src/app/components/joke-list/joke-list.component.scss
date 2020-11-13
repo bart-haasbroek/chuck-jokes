@@ -1,4 +1,7 @@
 .jokes-list {
+    padding: 0;
+    margin: 0;
+
     &__item {
         display: flex;
         margin-bottom: 20px;

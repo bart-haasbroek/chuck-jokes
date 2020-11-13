@@ -3,7 +3,7 @@
 <div class="container">
   <h1>Chuck jokes</h1>
 
-  <nav>
+  <div>
     <button (click)="getJokes()">
       Get new jokes
     </button>
@@ -11,7 +11,7 @@
     <button (click)="toggleInterval()">
       {{timerIsEnabled ? 'Stop' : 'Start' }} timer
     </button>
-  </nav>
+  </div>
 
   <div class="chuck-jokes__container">
     <joke-list
@@ -21,7 +21,7 @@
         [jokes]="(chuckJokes$ | async)"
         (onJokeClick)="addToFavourite($event)"
     ></joke-list>
-    
+
     <joke-list
       title="Your favourite Chuck Norris Jokes:"
       buttonLabel="Remove from favourites"
