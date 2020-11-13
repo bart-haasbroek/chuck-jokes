@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   public chuckJokes$: Observable<ChuckJokeInterface[]>;
   public favouriteChuckJokes$: Observable<ChuckJokeInterface[]>;
   public amountOfFavouriteJokes$: Observable<number>;
-  private enableTimer$ = new BehaviorSubject<boolean>(true);
+  public timerIsEnabled$: Observable<boolean>;
 
   constructor(private store: Store<chuckJokesState>) {
     this.store.dispatch(fromChuckJokes.getSavedFavouriteJokes());
@@ -26,20 +26,7 @@ export class AppComponent implements OnInit {
     this.chuckJokes$ = this.store.select(fromChuckJokes.selectAllChuckJokes);
     this.favouriteChuckJokes$ = this.store.select(fromChuckJokes.selectFavouriteJokes);
     this.amountOfFavouriteJokes$ = this.store.select(fromChuckJokes.selectAmountOfFavouriteJokes);
-    this.subscribeToTimer();
-  }
-
-  public subscribeToTimer(): void {
-    const interval$ = interval(1000).pipe(
-      filter((count) => count && count % 5 === 0),
-    )
-
-    combineLatest([this.amountOfFavouriteJokes$, this.enableTimer$]).pipe(
-      map((data) => data[0] < 10 && data[1]),
-      switchMap((startInterval) => startInterval ? interval$ : empty())
-    ).subscribe(() => {
-      this.store.dispatch(fromChuckJokes.fetchNewChuckJokeAsFavourite());
-    });
+    this.timerIsEnabled$ = this.store.select(fromChuckJokes.selectTimerStatus);
   }
 
   public getJokes(): void {
@@ -49,16 +36,12 @@ export class AppComponent implements OnInit {
   public addToFavourite(item: ChuckJokeInterface): void {
     this.store.dispatch(fromChuckJokes.markJokeAsFavourite(item));
   }
-  
+
   public removeFavourite(item: ChuckJokeInterface): void {
     this.store.dispatch(fromChuckJokes.removeJokeAsFavourite(item));
   }
 
-  public toggleInterval(): void {
-    this.enableTimer$.next(!this.enableTimer$.value);
-  }
-
-  public get timerIsEnabled(): boolean {
-    return this.enableTimer$.value;
+  public setTimer(status: boolean): void {
+    this.store.dispatch(fromChuckJokes.setTimerStatus(status));
   }
 }

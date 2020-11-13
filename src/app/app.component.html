@@ -8,9 +8,17 @@
       Get new jokes
     </button>
 
-    <button (click)="toggleInterval()">
-      {{timerIsEnabled ? 'Stop' : 'Start' }} timer
+    <button
+      *ngIf="!(timerIsEnabled$ | async) else turnTimerOff"
+      (click)="setTimer(true)">
+        Start Timer
     </button>
+
+    <ng-template #turnTimerOff>
+      <button (click)="setTimer(false)">
+        Stop Timer
+      </button>
+    </ng-template>
   </div>
 
   <div class="chuck-jokes__container">

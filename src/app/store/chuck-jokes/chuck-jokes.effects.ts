@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as ChuckJokesActions from './chuck-jokes.actions';
-import { switchMap, map, catchError, tap, withLatestFrom } from 'rxjs/operators';
+import { switchMap, map, catchError, tap, withLatestFrom, combineLatest, filter } from 'rxjs/operators';
 import { ChuckJokesService } from '@app/services/chuck-jokes.service';
 import { Store } from '@ngrx/store';
 import { chuckJokesState } from './chuck-jokes.reducer';
-import { selectFavouriteJokes } from './chuck-jokes.selectors';
+import { selectFavouriteJokes, selectAmountOfFavouriteJokes } from './chuck-jokes.selectors';
 import { ChuckJokeInterface } from '@app/interfaces/chuck-joke.interface';
-import { of } from 'rxjs';
+import { empty, interval, of } from 'rxjs';
 
 @Injectable()
 export class ChuckJokesEffects {
@@ -27,7 +27,7 @@ export class ChuckJokesEffects {
             )
         })
     );
-    
+
     @Effect()
     fetchNewChuckJokeAsFavourite$ = this.actions$.pipe(
         ofType(ChuckJokesActions.fetchNewChuckJokeAsFavourite),
@@ -55,5 +55,19 @@ export class ChuckJokesEffects {
         tap((favourites: ChuckJokeInterface[]) => {
             localStorage.setItem('favouriteJokes', JSON.stringify(favourites));
         })
+    );
+
+    @Effect()
+    saveFavouritesd$ = this.actions$.pipe(
+        ofType(ChuckJokesActions.setTimerStatus),
+        combineLatest(this.store.select(selectAmountOfFavouriteJokes)),
+        map((data) => data[0].payload && data[1] < 10),
+        switchMap((startInterval) => {
+            const interval$ = interval(1000).pipe(
+                filter((count) => count && count % 5 === 0),
+            )
+            return startInterval ? interval$ : empty()
+        }),
+        map(() => ChuckJokesActions.fetchNewChuckJokeAsFavourite()),
     );
 }

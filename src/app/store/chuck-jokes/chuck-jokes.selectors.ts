@@ -17,12 +17,12 @@ export const selectFavouriteJokes = createSelector(
     (state: chuckJokesState) => state.favouriteJokes
 );
 
-export const selectFdavouriteJokes = createSelector(
-    getChuckJokesState,
-    (state: any) => state.favouriteJokes
-);
-
 export const selectAmountOfFavouriteJokes = createSelector(
     selectFavouriteJokes,
     (favouriteJokes: ChuckJokeInterface[]) => favouriteJokes.length
+);
+
+export const selectTimerStatus = createSelector(
+    getChuckJokesState,
+    (state) => state.timerIsEnabled
 );

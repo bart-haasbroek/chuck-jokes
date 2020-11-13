@@ -2,11 +2,12 @@ import { ChuckJokeInterface } from '@interfaces/chuck-joke.interface';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import * as ChuckJokesActions from './chuck-jokes.actions';
- 
+
 export interface chuckJokesState extends EntityState<ChuckJokeInterface> {
     loading: boolean;
     loaded: boolean;
     favouriteJokes: ChuckJokeInterface[],
+    timerIsEnabled: boolean;
 }
 
 export const chuckJokesAdapter = createEntityAdapter<ChuckJokeInterface>();
@@ -14,8 +15,9 @@ export const chuckJokesState: chuckJokesState = chuckJokesAdapter.getInitialStat
     loading: false,
     loaded: false,
     favouriteJokes: [],
+    timerIsEnabled: false,
 });
- 
+
 const _chuckJokesReducer = createReducer(
     chuckJokesState,
     on(ChuckJokesActions.getChuckJokes, state => {
@@ -59,8 +61,14 @@ const _chuckJokesReducer = createReducer(
             favouriteJokes: action.payload
         }
     }),
+    on(ChuckJokesActions.setTimerStatus, (state, action) => {
+        return {
+            ...state,
+            timerIsEnabled: action.payload
+        }
+    }),
 );
- 
+
 export function chuckJokesReducer(state, action) {
   return _chuckJokesReducer(state, action);
 }

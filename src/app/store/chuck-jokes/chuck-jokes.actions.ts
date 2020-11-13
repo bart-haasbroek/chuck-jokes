@@ -30,3 +30,8 @@ export const getSavedFavouriteJokesSuccess = createAction(
     '[chuck jokes] get saved a favourite jokes success',
     (payload: ChuckJokeInterface[]) => ({ payload })
 );
+
+export const setTimerStatus = createAction(
+    '[chuck jokes] set timer status',
+    (payload: boolean) => ({ payload })
+);
