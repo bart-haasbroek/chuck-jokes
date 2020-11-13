@@ -1,16 +1,20 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import { JokeList } from './joke-list.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
+  let jokeList: JokeList;
 
   beforeEach(() => {
     page = new AppPage();
+    jokeList = new JokeList();
   });
 
-  it('should display welcome message', () => {
+  it('should get 10 jokes after clicking the button', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('chuck-jokes app is running!');
+    page.getJokes();
+    expect(jokeList.getCount()).toEqual(10);
   });
 
   afterEach(async () => {
