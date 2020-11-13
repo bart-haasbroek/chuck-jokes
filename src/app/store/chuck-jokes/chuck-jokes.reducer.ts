@@ -10,7 +10,7 @@ export interface chuckJokesState extends EntityState<ChuckJokeInterface> {
 }
 
 export const chuckJokesAdapter = createEntityAdapter<ChuckJokeInterface>();
-const chuckJokesState: chuckJokesState = chuckJokesAdapter.getInitialState({
+export const chuckJokesState: chuckJokesState = chuckJokesAdapter.getInitialState({
     loading: false,
     loaded: false,
     favouriteJokes: [],
@@ -31,13 +31,6 @@ const _chuckJokesReducer = createReducer(
             loading: false,
             loaded: true,
         });
-    }),
-    on(ChuckJokesActions.getChuckJokesFail, state => {
-        return {
-            ...state,
-            loading: false,
-            loaded: false,
-        };
     }),
     on(ChuckJokesActions.getChuckJokesFail, state => {
         return {
