@@ -9,6 +9,6 @@ export class ChuckJokesService {
       ) { }
 
     public getJokes(amount: number = 10): Observable<any> {
-        return this.http.get(`http://api.icndb.com/jokes/random/${amount}`);
+        return this.http.get(`https://api.icndb.com/jokes/random/${amount}`);
     }
 }
